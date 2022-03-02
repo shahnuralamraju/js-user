@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6a6dd1a6c8.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <section class="mainSection">
+        <div class="form_section row">
+            <div class="col-md-6 ">
+                <img class="w-100 h-100 d-md-block d-none" src="./images/newlogin2.png" alt="">
+            </div>
+
+            <div class="col-md-5 p-5 form-div">
+                <form autocomplete="off" class="main-form position-relative">
+                    <div class="error-icon"><i class="fa-solid fa-circle-user "></i></div>
+                    <h3 class="text-white text-center mb-5 mt-1">Sign Up</h3>
+
+                    <div class="input-div">
+                        <div id="labelName" class="label"><label for="name">Name</label></div>
+                        <input onkeyup="{handleChange('name', this.value)}" onfocus="handleLabel('labelName')"
+                            onblur="handleBlur('labelName','name')" type="text" class="input" id="name">
+                        <div style="color: red;" id="error_name"></div>
+                    </div>
+                    <div class="input-div">
+                        <div id="labelEmail" class="label"><label for="email">Email</label></div>
+                        <input onkeyup="{handleChange('email', this.value)}" onfocus="{handleLabel('labelEmail')}"
+                            onblur="handleBlur('labelEmail','email')" type="text" class="input" id="email">
+                        <div style="color: red;" id="error_email"></div>
+                    </div>
+                    <div class="input-div">
+                        <div id="labelPass" class="label"><label for="password">Password</label></div>
+                        <input onkeyup="{handleChange('password', this.value)}" onfocus="{handleLabel('labelPass')}"
+                            onblur="handleBlur('labelPass','password')" type="password" class="input" id="password">
+                        <div class="passIcon"><i id="faEyeSlash" class="fa-solid fa-eye-slash"></i><i id="faEye"
+                                class="fa-solid fa-eye"></i> </div>
+                        <div style="color: red;" id="error_password"></div>
+                    </div>
+                    <div class="input-div">
+                        <div id="labelPass2" class="label"><label for="password2">Confirm Password</label></div>
+                        <input onkeyup="{handleChange('password2', this.value)}" onfocus="{handleLabel('labelPass2')}"
+                            onblur="handleBlur('labelPass2','password2')" type="password" class="input" id="password2">
+                        <div class="passIcon"><i id="faEyeSlash2" class="fa-solid fa-eye-slash"></i><i id="faEye2"
+                                class="fa-solid fa-eye"></i> </div>
+                        <div style="color: red;" id="error_password2"></div>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="button">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="second">
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div id="mod-body" class="modal-body">
+                        <i id="modalCloserBtn" class="fa-solid fa-circle-xmark bt-closer" data-bs-dismiss="modal"></i>
+                        <form autocomplete="off" id="submit_form" class="p-4">
+                            <div class="error-icon"><i class="fa-solid fa-gear"></i></div>
+                            <h3 class="text-secondary text-center mb-3 mt-1">Update Info</h3>
+
+                            <input type="hidden" name="idinput" id="upidinput">
+                            <input type="hidden" name="fileImage" id="fileImage">
+                            <input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)">
+
+                            <label for="file" class="fileInputLebel">
+                                <div class="img_div">
+                                    <div class="hover-div"><i id="reset_icon"
+                                            class="fa-solid fa-arrow-rotate-right"></i></div>
+                                    <img id="output" />
+                                </div>
+                            </label><br>
+
+                            <label class="text-primary" for="name">Update Name</label>
+                            <input class="mod-input" type="text" name="name" id="upname">
+
+                            <label class="text-primary" for="email">Update Email</label>
+                            <input class="mod-input" type="email" name="email" id="upemail">
+
+                            <label class="text-primary" for="password">Update Password</label>
+                            <input class="mod-input" type="text" name="password" id="uppassword">
+                            <button type="submit" class="button">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mod-success">
+            <div class="mod-body">
+                <i class="fa-solid fa-circle-check"></i>
+                <h2 class="mt-3">Successfully added this user</h2>
+                <span id="crossId"><i class="fa-solid fa-circle-xmark mt-4"></i></span>
+            </div>
+        </div>
+
+
+
+
+        <div id="card-container" class="m-auto container row row-cols-1 row-cols-md-4 g-4"></div>
+
+    </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
