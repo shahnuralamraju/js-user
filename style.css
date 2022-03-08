@@ -201,7 +201,10 @@ input[type="file"]{
     color:blueviolet;
     border-radius: 50%;
 }
-
+#user_alert{
+  display: none;
+  color:  #F9837F;
+}
 .card{
     font-weight: bold;
     color: white;

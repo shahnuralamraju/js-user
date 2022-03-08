@@ -19,6 +19,7 @@ let eyeSlash = document.getElementById("faEyeSlash");
 let eye = document.getElementById("faEye");
 let eyeSlash2 = document.getElementById("faEyeSlash2");
 let eye2 = document.getElementById("faEye2");
+let userAlert = document.getElementById("user_alert");
 
 
 
@@ -199,19 +200,23 @@ const displayAllUser = () => {
     let cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
 
-    totalUser.map(user => {
-        const { name, email, id, image } = user;
-        const div = document.createElement("div");
-        div.setAttribute("class", "col");
-        div.innerHTML = `
+    if (totalUser.length <= 0) {
+        userAlert.style.display = "block"
+    } else {
+        userAlert.style.display = "none"
+        totalUser.map(user => {
+            const { name, email, id, image } = user;
+            const div = document.createElement("div");
+            div.setAttribute("class", "col");
+            div.innerHTML = `
           <div class="card d-flex justify-content-between align-items-center shadow-sm">
                 <div class="profile_img">
                     <img src=${image}> 
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">${name}</h5>
-                    <p class="card-text">Email: ${email}</p>
-                    <p class="card-text">ID: ${id}</p>
+                <div class="card-body m-auto">
+                    <h5 class="card-title text-center">${name}</h5>
+                    <p class="text-center"><i> ${email}</i></p>
+                    <p class="text-center">ID: BD${id}</p>
                 </div>
                 <div onclick={deleteUser(${id})} class="closer delete"><i class="fa-solid fa-trash-can"></i></div>
                 <div onclick={getSingleUser(${id})} class="closer edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -220,8 +225,9 @@ const displayAllUser = () => {
           </div>
        
         `
-        cardContainer.appendChild(div);
-    })
+            cardContainer.appendChild(div);
+        })
+    }
 }
 
 // adding user into localStorage
